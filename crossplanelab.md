@@ -31,9 +31,6 @@ Login to Azure:
 ```
 
 
-
-<img width="1341" height="404" alt="image" src="https://github.com/user-attachments/assets/0f543b0c-cd06-4282-9361-80e0291aa93c" />
-
 To list Azure subscriptions using Azure CLI:
 
 ```bash
@@ -46,27 +43,41 @@ Show current active subscription
 az account show --output table
 ```
 
+If the resource group doesn't exist yet, create it first:
+```bash
+az group create --name rg-crossplane --location centralindia
+```
 
+create a basic single-node AKS cluster in Central India:
+```bash
+az aks create \
+  --resource-group rg-crossplane \
+  --name crossplaneaks \
+  --node-count 1 \
+  --location centralindia \
+  --generate-ssh-keys
+```
 
-<img width="668" height="215" alt="image" src="https://github.com/user-attachments/assets/1b32d348-7bd6-473d-9ccf-3523b5243a4a" />
+```bash
+$ az aks get-credentials --resource-group rg-crossplane --name crossplaneaks
+Merged "crossplaneaks" as current context in C:\Users\abc\.kube\config
+```
 
-<img width="1035" height="163" alt="image" src="https://github.com/user-attachments/assets/f92b6d80-2785-42ec-8ad3-28e8e0104442" />
+```bash
+$ kubectl get node
+NAME                                STATUS   ROLES    AGE     VERSION
+aks-nodepool1-11095005-vmss000000   Ready    <none>   2m49s   v1.35.6
+```
 
+Install helm:
 
-
+```bash
 $helmVersion = "v3.19.0"
 Invoke-WebRequest -Uri "https://get.helm.sh/helm-$helmVersion-windows-amd64.zip" -OutFile "$env:TEMP\helm.zip"
 Expand-Archive -Path "$env:TEMP\helm.zip" -DestinationPath "$env:TEMP\helm" -Force
 Copy-Item "$env:TEMP\helm\windows-amd64\helm.exe" "C:\Windows\System32\helm.exe"
 helm version
+```
 
-<img width="1106" height="167" alt="image" src="https://github.com/user-attachments/assets/ea91a40c-b0cc-4cd4-8964-a2dd626351f4" />
-
-
-
-<img width="1071" height="343" alt="image" src="https://github.com/user-attachments/assets/77a46a7b-07b5-4bb4-93d3-cf0ddb95807a" />
-
-
-<img width="798" height="76" alt="image" src="https://github.com/user-attachments/assets/68025098-eeb6-4899-a9d2-ce852d4eb409" />
 
 
