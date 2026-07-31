@@ -115,3 +115,47 @@ Chart Application Version: 2.3.4
 
 Kube Version: v1.35.6
 --------------
+
+Install the Azure Provider
+
+```bash
+$ cat > provider-family-azure.yaml <<EOF
+apiVersion: pkg.crossplane.io/v1
+kind: Provider
+metadata:
+  name: provider-family-azure
+spec:
+  package: xpkg.upbound.io/upbound/provider-family-azure:v1
+EOF
+```
+
+```bash
+kubectl apply -f provider-family-azure.yaml
+kubectl get providers
+kubectl get pods -n crossplane-system
+```
+
+$ kubectl get providers
+NAME                    INSTALLED   HEALTHY   PACKAGE                                            AGE
+provider-family-azure   True        True      xpkg.upbound.io/upbound/provider-family-azure:v1   2m50s
+
+
+Authenticate the Provider to Azure
+
+Service Principal (simpler, less secure)
+
+```bash
+az ad sp create-for-rbac \
+  --role Owner \
+  --scopes "//subscriptions/0f45888e-fb6b-462e-b795-689434a41c26"
+```
+
+```bash
+cat azure-credentials.json
+```
+
+```bash
+kubectl create secret generic azure-secret \
+  -n crossplane-system \
+  --from-file=creds=./azure-credentials.json
+```
