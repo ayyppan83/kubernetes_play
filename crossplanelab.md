@@ -197,5 +197,7 @@ spec:
     name: default
 EOF
 ```
-
+```bash
+kubectl apply -f ResourceGroup.yaml
+```
 
