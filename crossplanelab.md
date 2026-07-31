@@ -1,13 +1,35 @@
 To install azure cli (az)
+
 https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-windows?view=azure-cli-latest&pivots=msi-powershell
 
 <img width="1272" height="235" alt="image" src="https://github.com/user-attachments/assets/94fc265d-82da-44ec-8b5a-43d766c2335e" />
 
-$ProgressPreference = 'SilentlyContinue'
-Invoke-WebRequest -Uri https://aka.ms/installazurecliwindows -OutFile .\AzureCLI.msi
-Start-Process msiexec.exe -Wait -ArgumentList '/I', 'AzureCLI.msi', '/quiet'
-Remove-Item .\AzureCLI.msi
+## Install Azure CLI on Windows Using PowerShell
 
-PS C:\Windows\system32> az login --use-device-code
+Run the following commands in an **elevated PowerShell window (Run as Administrator)**:
+
+```powershell
+$ProgressPreference = 'SilentlyContinue'
+
+Invoke-WebRequest -Uri "https://aka.ms/installazurecliwindowsx64" -OutFile ".\AzureCLI.msi"
+
+Start-Process msiexec.exe -Wait -ArgumentList '/I', 'AzureCLI.msi', '/quiet'
+
+Remove-Item ".\AzureCLI.msi"
+```
+
+Verify the installation:
+
+```powershell
+az version
+```
+
+Login to Azure:
+
+```powershell
+ az login --use-device-code
+```
+
+
 
 <img width="1341" height="404" alt="image" src="https://github.com/user-attachments/assets/0f543b0c-cd06-4282-9361-80e0291aa93c" />
