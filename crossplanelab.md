@@ -159,3 +159,43 @@ kubectl create secret generic azure-secret \
   -n crossplane-system \
   --from-file=creds=./azure-credentials.json
 ```
+
+Create a ProviderConfig referencing the secret:
+
+```bash
+cat > ProviderConfig.yaml <<EOF
+apiVersion: azure.upbound.io/v1beta1
+kind: ProviderConfig
+metadata:
+  name: default
+spec:
+  credentials:
+    source: Secret
+    secretRef:
+      namespace: crossplane-system
+      name: azure-secret
+      key: creds
+EOF
+```
+```bash
+kubectl apply -f providerconfig.yaml
+```
+
+
+Provision an Azure resource to test
+
+```bash
+cat > ResourceGroup.yaml <<EOF
+apiVersion: azure.upbound.io/v1beta1
+kind: ResourceGroup
+metadata:
+  name: crossplane-test-rg
+spec:
+  forProvider:
+    location: eastus
+  providerConfigRef:
+    name: default
+EOF
+```
+
+
