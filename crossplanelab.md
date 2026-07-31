@@ -79,5 +79,39 @@ Copy-Item "$env:TEMP\helm\windows-amd64\helm.exe" "C:\Windows\System32\helm.exe"
 helm version
 ```
 
+Add the Crossplane Helm repository
 
+```bash
+helm repo add crossplane-stable https://charts.crossplane.io/stable
+helm repo update
+```
 
+Install Crossplane via Helm
+
+```bash
+helm upgrade --install crossplane crossplane-stable/crossplane \
+  --namespace crossplane-system \
+  --create-namespace
+```
+
+-------------
+$ helm upgrade --install crossplane crossplane-stable/crossplane \
+  --namespace crossplane-system \
+  --create-namespace
+Release "crossplane" does not exist. Installing it now.
+NAME: crossplane
+LAST DEPLOYED: Fri Jul 31 14:42:45 2026
+NAMESPACE: crossplane-system
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+NOTES:
+Release: crossplane
+
+Chart Name: crossplane
+Chart Description: Crossplane is an open source Kubernetes add-on that enables platform teams to assemble infrastructure from multiple vendors, and expose higher level self-service APIs for application teams to consume.
+Chart Version: 2.3.4
+Chart Application Version: 2.3.4
+
+Kube Version: v1.35.6
+--------------
