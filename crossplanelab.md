@@ -201,3 +201,15 @@ EOF
 kubectl apply -f ResourceGroup.yaml
 ```
 
+<img width="840" height="150" alt="image" src="https://github.com/user-attachments/assets/8b429b80-0f6c-4d3a-9be9-eb76cace1f3e" />
+
+
+<img width="1081" height="265" alt="image" src="https://github.com/user-attachments/assets/5b45df5d-571b-4660-8541-191109d03358" />
+
+<img width="1089" height="306" alt="image" src="https://github.com/user-attachments/assets/34ec94ae-d1e8-45bf-b9f1-6f7345f4a0d1" />
+
+<img width="1032" height="259" alt="image" src="https://github.com/user-attachments/assets/c56ca5b1-e340-47a2-9792-0f613b03f534" />
+
+
+
+
