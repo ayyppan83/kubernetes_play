@@ -168,6 +168,15 @@ az role assignment create \
   --role "Contributor" \
   --scope "/subscriptions/<sub-id>/resourceGroups/rg-crossplane-managed"
 ```
+```powershell
+az role assignment create `
+  --assignee-object-id $UAMI_PRINCIPAL_ID `
+  --assignee-principal-type ServicePrincipal `
+  --role Contributor `
+  --scope "/subscriptions/<sub-id>/resourceGroups/rg-crossplane-managed" `
+  --subscription <>
+```
+
 
 > 🔐 **Talking point:** "I scoped the identity to Contributor on a single resource group the platform owns, rather than Owner at subscription scope like the lab version — that limits blast radius if the identity is ever misused."
 
