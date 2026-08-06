@@ -69,6 +69,15 @@ Expand-Archive -Path "$env:TEMP\helm.zip" -DestinationPath "$env:TEMP\helm" -For
 Copy-Item "$env:TEMP\helm\windows-amd64\helm.exe" "C:\Windows\System32\helm.exe"
 helm version
 ```
+```bash
+helmVersion="v3.19.0"
+curl -L "https://get.helm.sh/helm-${helmVersion}-windows-amd64.zip" -o /tmp/helm.zip
+unzip /tmp/helm.zip -d /tmp
+cp /tmp/windows-amd64/helm.exe ~/helm.exe
+export PATH="$PATH:$HOME"
+helm.exe version
+```
+
 
 ### 0.4 — Install Crossplane core
 
